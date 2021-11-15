@@ -1,7 +1,7 @@
 base:
   project: winequality-project
   random_state: 42
-  target_col: TARGET
+  target_col: activity
 
 data_source:
   s3_source: data_given/activity_context_tracking_data.csv
@@ -10,8 +10,8 @@ load_data:
   raw_dataset_csv: data/raw/activity_context_tracking_data.csv
 
 split_data:
-  train_path: data/processed/activity_context_tracking_data.csv
-  test_path: data/processed/activity_context_tracking_data.csv
+  train_path: data/processed/train_activity.csv
+  test_path: data/processed/test_activity.csv
   test_size: 0.2
 
 estimators:

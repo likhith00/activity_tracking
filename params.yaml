@@ -15,7 +15,7 @@ split_data:
   test_size: 0.2
 
 estimators:
-  LogisticRegression:
+  KNeighborsClassifier:
     params:
       n_neighbors: 3 
 model_dir: saved_models

@@ -21,4 +21,4 @@ estimators:
 model_dir: saved_models
 
 reports:
-  scores: report/scores.json
+  scores: reports/score.json

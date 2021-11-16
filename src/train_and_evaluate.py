@@ -21,13 +21,14 @@ def train_and_evaluate(config_path):
     X_test = test_data.drop(columns=target,axis=1)
     y_train = train_data[target]
     y_test  = test_data[target]
+    reports = config["reports"]["scores"]
     
     knc = KNeighborsClassifier(n_neighbors= neighbors)
     knc.fit(X_train,y_train)
     y_pred = knc.predict(X_test)
     score = accuracy_score(y_test,y_pred)
     score = {"accuracy":score}
-    with open("score.json","w") as json_file:
+    with open(reports,"w") as json_file:
         json.dump(score,json_file,indent=4)
     os.makedirs(model_dir, exist_ok=True)
     model_path = os.path.join(model_dir, "model.joblib")

@@ -1,0 +1,53 @@
+schema: '2.0'
+stages:
+  load_data:
+    cmd: python src/load_data.py --config=params.yaml
+    deps:
+    - path: data_given/activity_context_tracking_data.csv
+      md5: 01e8a9389c0d4967cd71cd008e9864b2
+      size: 27285110
+    - path: src/get_data.py
+      md5: f96f0751788d455c584a94539328aa62
+      size: 591
+    - path: src/load_data.py
+      md5: be81a32f8473e37fd26fe86e15482bb1
+      size: 572
+    outs:
+    - path: data/raw/activity_context_tracking_data.csv
+      md5: 0e39f555371584828f71c8f9f30363f6
+      size: 32356889
+  split_data:
+    cmd: python src/split_data.py --config=params.yaml
+    deps:
+    - path: data/raw/activity_context_tracking_data.csv
+      md5: 0e39f555371584828f71c8f9f30363f6
+      size: 32356889
+    - path: src/split_data.py
+      md5: c2ad03a7890c3344f1c2f08a047b3105
+      size: 1084
+    outs:
+    - path: data/processed/test_activity.csv
+      md5: 0557146c36d9964f07e0ab2f83411349
+      size: 5678106
+    - path: data/processed/train_activity.csv
+      md5: 6e332cfc9080e9672fcd7e6f360ea4b2
+      size: 22699749
+  train_and_evaluate_data:
+    cmd: python src/train_and_evaluate.py --config=params.yaml
+    deps:
+    - path: data/processed/test_activity.csv
+      md5: 0557146c36d9964f07e0ab2f83411349
+      size: 5678106
+    - path: data/processed/train_activity.csv
+      md5: 6e332cfc9080e9672fcd7e6f360ea4b2
+      size: 22699749
+    - path: src/train_and_evaluate.py
+      md5: 1065ff607811cbd83d9811fd46ec3080
+      size: 1519
+    outs:
+    - path: reports/score.json
+      md5: aef4204b7424fed7f49a731ac0b7c053
+      size: 40
+    - path: saved_models/model.joblib
+      md5: ac275245f6fc93780ccf64576e405ca5
+      size: 24334558

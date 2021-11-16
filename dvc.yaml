@@ -1,15 +1,15 @@
 stages:
   load_data:
-    cmd: src/python load_data.py --config=params.yaml
+    cmd: python src/load_data.py --config=params.yaml
     deps: 
       - src/get_data.py
       - src/load_data.py
       - data_given/activity_context_tracking_data.csv
     outs:
-      - data/raw/activity_context_tracking_data.csv
-  
+      - data/raw/activity_context_tracking_data.csv  
+
   split_data:
-    cmd: src/python split_data.py --config=params.yaml
+    cmd: python src/split_data.py --config=params.yaml
     deps:
       - src/split_data.py
       - data/raw/activity_context_tracking_data.csv
@@ -18,12 +18,12 @@ stages:
       - data/processed/test_activity.csv
   
   train_and_evaluate_data:
-    cmd: src/python train_and_evaluate.py --config=params.yaml
+    cmd: python src/train_and_evaluate.py --config=params.yaml
     deps:
       - src/train_and_evaluate.py
       - data/processed/train_activity.csv
       - data/processed/test_activity.csv
     metrics:
-      - report/scores.json
+      - reports/score.json
     outs:
       - saved_models/model.joblib

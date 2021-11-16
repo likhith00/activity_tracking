@@ -1,5 +1,11 @@
+-e .
 pandas
 sklearn
 numpy
 dvc
 dvc[gdrive]
+mlflow
+matplotlib
+tox
+flake8
+pytest

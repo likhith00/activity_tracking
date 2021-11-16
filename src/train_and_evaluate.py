@@ -2,6 +2,8 @@ import os
 import argparse
 import pandas as pd
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import plot_confusion_matrix
+import matplotlib.pyplot as plt
 from get_data import read_params
 from sklearn.metrics import accuracy_score
 import json
@@ -37,6 +39,9 @@ def train_and_evaluate(config_path):
         knc.fit(X_train,y_train)
         y_pred = knc.predict(X_test)
         score = accuracy_score(y_test,y_pred)
+        plot_confusion_matrix(knc, X_test, y_test)
+        plt.savefig('confusion_matrix.png')
+
         j_score = {"accuracy":score}
         with open(reports,"w") as json_file:
             json.dump(j_score,json_file,indent=4)

@@ -16,5 +16,8 @@ jobs:
 
           echo "## MODEL METRICS" > report.md
           cat reports/scores.json >> report.md
+          echo "## Confusion Matrix" >> report.md
+          cml-publish confusion_matrix.png --md >> report.md
+
           
           cml-send-comment report.md

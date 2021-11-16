@@ -1,5 +1,11 @@
 name: activity-tracking
-on: [push]
+on:
+  push:
+    branches:
+    - main-mlflow
+  pull_request:
+    branches:
+    - main-mlflow
 jobs:
   run:
     runs-on: [ubuntu-latest]

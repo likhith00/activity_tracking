@@ -28,4 +28,4 @@ mlflow_config:
   experiment_name: activity_tracking_project
   run_name: activity
   registered_model_name: KNeighborsClassifier
-  remote_server_uri: http://127.0.0.1:1234
+  remote_server_uri: http://0.0.0.0:1234

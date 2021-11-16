@@ -1,5 +1,5 @@
 base:
-  project: winequality-project
+  project: activity_tracking_project
   random_state: 42
   target_col: activity
 

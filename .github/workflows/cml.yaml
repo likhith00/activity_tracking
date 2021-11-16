@@ -21,7 +21,7 @@ jobs:
           pip install -r requirements.txt
           python src/train_and_evaluate.py
 
-          echo "MODEL METRICS" >> report.md
+          echo "MODEL METRICS" > report.md
           cat reports/scores.json >> report.md
 
           cml-send-comment report.md

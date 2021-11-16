@@ -12,19 +12,17 @@ jobs:
     #container: docker://dvcorg/cml-py3:latest
     steps:
       - uses: actions/checkout@v2
-      - name: cml_run
+      - name: installing dependencies
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Your ML workflow goes here
-          pip install -r requirements.txt
-          python src/train_and_evaluate.py
-
-          echo "## MODEL METRICS" > report.md
-          cat reports/scores.json >> report.md
-
-          echo "## Confusion Matrix" >> report.md
-          cml-publish confusion_matrix.png --md >> report.md
-
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Lint with flake8
+      run: |
+          # stop the build if there are Python syntax errors or undefined names
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
           
-          cml-send-comment report.md

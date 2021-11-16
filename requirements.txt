@@ -6,3 +6,6 @@ dvc
 dvc[gdrive]
 mlflow
 matplotlib
+tox
+flake8
+pytest

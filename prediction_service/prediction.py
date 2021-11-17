@@ -39,7 +39,6 @@ def get_schema(schema_path=schema_path):
     return schema
 
 def validate_input(dict_request):
-    print(dict_request)
     def _validate_cols(col):
         schema = get_schema()
         actual_cols = schema.keys()
@@ -48,8 +47,6 @@ def validate_input(dict_request):
 
     def _validate_values(col, val):
         schema = get_schema()
-        print(dict_request)
-
         #if not (schema[col]["min"] <= float(dict_request[col][0]) <= schema[col]["max"]) :
         #    raise NotInRange
         if not (schema[col]["min"] <= float(dict_request[col]) <= schema[col]["max"]) :
@@ -64,10 +61,8 @@ def validate_input(dict_request):
 def form_response(dict_request):
     if validate_input(dict_request):
         data = dict_request.values()
-        print(data)
-        data = [float(data_[0]) for data_ in data]
+        data = [float(data_) for data_ in data]
         #data = [list(map(float, data))]
-        print(data)
         response = predict(data)
         
         return response
@@ -75,10 +70,8 @@ def form_response(dict_request):
 def api_response(dict_request):
     try:
         if validate_input(dict_request):
-            print("inside api")
             #data = np.array([list(dict_request.values())])
             data = list(dict_request.values())
-            print(data)
             response = predict(data)
             response = {"response": response}
             return response
@@ -89,3 +82,7 @@ def api_response(dict_request):
     except NotInCols as e:
         response = {"the_exected_cols": get_schema().keys(), "response": str(e) }
         return response
+
+
+
+

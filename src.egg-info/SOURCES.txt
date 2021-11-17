@@ -74,6 +74,7 @@ notebooks/.ipynb_checkpoints/schema_in-checkpoint.json
 prediction_service/__init__.py
 prediction_service/labels.json
 prediction_service/prediction.py
+prediction_service/schema_in.json
 prediction_service/__pycache__/__init__.cpython-37.pyc
 prediction_service/__pycache__/prediction.cpython-37.pyc
 prediction_service/model/model.joblib
@@ -93,6 +94,7 @@ src.egg-info/SOURCES.txt
 src.egg-info/dependency_links.txt
 src.egg-info/top_level.txt
 src/__pycache__/get_data.cpython-37.pyc
+tests/test_samples
 webapp/static/css/main.css
 webapp/static/script/index.js
 webapp/templates/404.html

@@ -4,6 +4,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from get_data import read_params
 import pandas as pd
+import numpy as np
+import json
 
 
 def split_data(config_path):
@@ -18,6 +20,12 @@ def split_data(config_path):
     df = df.drop(columns=["_id"],axis=1)
     lc = LabelEncoder()
     df[TARGET] = lc.fit_transform(df[TARGET])
+    labels_dict = dict(zip(list(map(int,list(lc.transform(lc.classes_)))),lc.classes_))
+    
+
+    with open("labels.json", "w") as outfile:
+        json.dump(labels_dict, outfile)
+    
     train,test = train_test_split(df,test_size = split_ratio,random_state=random_state)
     train.to_csv(train_path,index=False,sep=',')
     test.to_csv(test_path,index=False,sep=',')

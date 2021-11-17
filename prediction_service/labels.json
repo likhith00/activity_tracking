@@ -1,0 +1,15 @@
+{
+    "0": "AscendingStairs",
+    "1": "ClimbingDownStairs",
+    "2": "ClimbingUpStairs",
+    "3": "DescendingStairs",
+    "4": "Driving",
+    "5": "Jogging",
+    "6": "Lying",
+    "7": "MountainAscending",
+    "8": "MountainDescending",
+    "9": "Running",
+    "10": "Sitting",
+    "11": "Standing",
+    "12": "Walking"
+}

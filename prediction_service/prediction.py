@@ -2,6 +2,7 @@ import yaml
 import json
 import numpy as np
 import joblib
+import json
 
 params_path = "params.yaml"
 
@@ -12,13 +13,13 @@ def read_params(config_path=params_path):
     return config
 
 def predict(data):
-    print("IN PREDICT",data)
     config = read_params(params_path)
     model_dir_path = config["webapp_model_dir"]
     model = joblib.load(model_dir_path)
     prediction = model.predict([data]).tolist()[0]
-    print(prediction)
-    return prediction
+    with open("prediction_service/labels.json","r") as f:
+        labels = json.load(f)
+    return labels[str(prediction)]
 
 def form_response(dict_request):
     data = dict_request.values()
@@ -27,6 +28,7 @@ def form_response(dict_request):
     #data = [list(map(float, data))]
     print(data)
     response = predict(data)
+    
     return response
 
 def api_response(dict_request):

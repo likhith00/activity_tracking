@@ -36,11 +36,12 @@ def train_and_evaluate(config_path):
     
     with mlflow.start_run(run_name=mlflow_config["run_name"]) as mlops_run:
         knc = KNeighborsClassifier(n_neighbors= neighbors)
-        knc.fit(X_train,y_train)
+        knc.fit(X_train,y_train.values.ravel())
         y_pred = knc.predict(X_test)
         score = accuracy_score(y_test,y_pred)
 
         plot_confusion_matrix(knc, X_test, y_test)
+        
         plt.savefig('confusion_matrix.png')
 
         j_score = {"accuracy":score}
@@ -55,12 +56,12 @@ def train_and_evaluate(config_path):
         tracking_url_type_store = urlparse(mlflow.get_artifact_uri()).scheme
 
         if tracking_url_type_store != "file":
-            mlflow.sklearn.log_model(
-                knc, 
-                "model", 
-                registered_model_name=mlflow_config["registered_model_name"])
+           mlflow.sklearn.log_model(
+               knc, 
+               "model", 
+               registered_model_name=mlflow_config["registered_model_name"])
         else:
-            mlflow.sklearn.load_model(knc, "model")
+           mlflow.sklearn.load_model(knc, "model")
 
 
 

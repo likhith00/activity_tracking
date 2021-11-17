@@ -15,6 +15,7 @@ def split_data(config_path):
     split_ratio = config["split_data"]["test_size"]
     TARGET = config["base"]["target_col"]
     df = pd.read_csv(raw_data_path,sep=',')
+    df = df.drop(columns=["_id"],axis=1)
     lc = LabelEncoder()
     df[TARGET] = lc.fit_transform(df[TARGET])
     train,test = train_test_split(df,test_size = split_ratio,random_state=random_state)

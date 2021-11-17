@@ -42,6 +42,7 @@ creating src-0.0.1\data_given
 creating src-0.0.1\mlruns
 creating src-0.0.1\mlruns\0
 creating src-0.0.1\notebooks
+creating src-0.0.1\prediction_service
 creating src-0.0.1\reports
 creating src-0.0.1\saved_models
 creating src-0.0.1\src
@@ -97,6 +98,8 @@ copying data_given\.gitignore -> src-0.0.1\data_given
 copying data_given\activity_context_tracking_data.csv.dvc -> src-0.0.1\data_given
 copying mlruns\0\meta.yaml -> src-0.0.1\mlruns\0
 copying notebooks\.gitkeep -> src-0.0.1\notebooks
+copying prediction_service\__init__.py -> src-0.0.1\prediction_service
+copying prediction_service\prediction.py -> src-0.0.1\prediction_service
 copying reports\.gitignore -> src-0.0.1\reports
 copying reports\scores.json -> src-0.0.1\reports
 copying saved_models\.gitignore -> src-0.0.1\saved_models
@@ -166,6 +169,8 @@ adding 'src-0.0.1\data_given\.gitignore'
 adding 'src-0.0.1\data_given\activity_context_tracking_data.csv.dvc'
 adding 'src-0.0.1\mlruns\0\meta.yaml'
 adding 'src-0.0.1\notebooks\.gitkeep'
+adding 'src-0.0.1\prediction_service\prediction.py'
+adding 'src-0.0.1\prediction_service\__init__.py'
 adding 'src-0.0.1\reports\.gitignore'
 adding 'src-0.0.1\reports\scores.json'
 adding 'src-0.0.1\saved_models\.gitignore'

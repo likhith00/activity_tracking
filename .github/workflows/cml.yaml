@@ -11,6 +11,11 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
+      
+      - uses: iterative/setup-cml@v1
+      
+      - uses: actions/setup-python@v2
+      
       - name: installing dependencies
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -25,3 +30,5 @@ jobs:
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
           
+          cml-publish confusion_matrix.png --md --title 'confusion-matrix' >> report.md
+          cml-send-comment report.md 

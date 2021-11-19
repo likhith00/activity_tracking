@@ -1,0 +1,35 @@
+name: activity-tracking
+on:
+  push:
+    branches:
+    - main-webapp
+  pull_request:
+    branches:
+    - main-webapp
+jobs:
+  run:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      
+      - uses: iterative/setup-cml@v1
+      
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Lint with flake8
+        run: |
+          pip3 install flake8 pytest
+          # stop the build if there are Python syntax errors or undefined names
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      
+      - name: cml
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pip3 install -r requirements.txt
+          
+          cml-publish confusion_matrix.png --md --title 'confusion-matrix' >> report.md
+          cml-send-comment report.md 

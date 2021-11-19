@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Activity context tracking
+{% endblock title %}
+
+{% block custom_css %}
+<!-- Custom CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock custom_css %}
+
+
+{% block body %}
+<!-- nav bar -->
+
+<nav class="navbar navbar-expand-lg navbar-light shadow fixed-top" style="background-color:cyan;">
+    <a class="navbar-brand" href="/">Activity context tracking </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div>
+    <!-- nav bar ends -->
+
+    <div class="container-fluid masthead">
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <form method="POST">
+                        <!-- Input block-->
+                        <div class="form-group">
+                            <label for="translation">
+                                <blockquote class="blockquote">
+                                    <p class="mb-2">Enter the details as indicated:</p>
+                                </blockquote>
+                            </label>
+
+                            <textarea class="form-control" name="orX" rows="1"
+                                placeholder="Enter orX between 0 to 359"></textarea><br>
+                            <textarea class="form-control" name="orY" rows="1"
+                                placeholder="Enter orY between -178.0 to 169.0"></textarea><br>
+                            <textarea class="form-control" name="orZ" rows="1"
+                                placeholder="Enter orZ between -86 to 88"></textarea><br>
+                            <textarea class="form-control" name="rX" rows="1"
+                                placeholder="Enter rX between -0.712191 to 0.80416"></textarea><br>
+                            <textarea class="form-control" name="rY" rows="1" 
+                                placeholder="Enter rY between -0.556955 to 0.723168 "></textarea><br>
+                            <textarea class="form-control" name="rZ" rows="1"
+                                placeholder="Enter rZ between  -0.999912 to 0.999904"></textarea><br>
+                            <textarea class="form-control" name="accX" rows="1"
+                                placeholder="Enter accX between -19.5367 to 15.8592"></textarea><br>
+                            <textarea class="form-control" name="accY" rows="1" 
+                                placeholder="Enter accY between -14.4801 to 19.575"></textarea><br>
+                            <textarea class="form-control" name="accZ" rows="1" 
+                                placeholder="Enter accZ between -5.97593 to 19.575"></textarea><br>
+                            <textarea class="form-control" name="gX" rows="1" 
+                                placeholder="Enter gX between -13.6577 to 13.6584"></textarea><br>
+                            <textarea class="form-control" name="gY" rows="1" 
+                                placeholder="Enter gY between -7.98642 to 9.89553"></textarea><br>
+                            <textarea class="form-control" name="gZ" rows="1" 
+                                placeholder="Enter gZ between -3.8281 to 14.4923"></textarea><br>
+                            <textarea class="form-control" name="mX" rows="1" 
+                                placeholder="Enter mX between -139.2 to 78.8"></textarea><br>
+                            <textarea class="form-control" name="mY" rows="1" 
+                                placeholder="Enter mY between -70.0 to 158.4"></textarea><br>
+                            <textarea class="form-control" name="mZ" rows="1" 
+                                placeholder="Enter mZ between -107.2 to 77.2"></textarea><br>
+                            <textarea class="form-control" name="lux" rows="1" 
+                                placeholder="Enter lux between  0.0 to 15000.0"></textarea><br>
+                            <textarea class="form-control" name="soundLevel" rows="1" 
+                                placeholder="Enter soundLevel between -26.57 to 70.62"></textarea>
+
+                        </div>
+
+                        <!-- Select output language here. -->
+                        <div class="form-group">
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2">Predict</button></br>
+                        </br>
+                    </form>
+                    <!-- Translated text returned by the Translate API is rendered here. -->
+                </div>
+                <div class="col">
+                    <form>
+                        <div class="form-group">
+                            <label for="translation-result">
+
+                                <blockquote class="blockquote">
+                                    <p class="mb-2">Prediction:</p>
+                                </blockquote>
+
+                            </label>
+                            <textarea readonly class="form-control" id="exTextarea" rows="5">{{ response }}</textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        {% endblock body %}
+
+        {% block custom_js %}
+        <!-- Custom JS -->
+        <script src="{{ url_for('static', filename='script/index.js') }}"></script>
+        {% endblock custom_js %}
